@@ -86,7 +86,7 @@ function App() {
           src="/assets/bordeaux.jpg"
           width={400}
           height={300}
-          alt="boreaux.jpg"
+          alt="bordeaux.jpg"
         />
       </section>
 
