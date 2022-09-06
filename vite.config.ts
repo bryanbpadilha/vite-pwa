@@ -12,7 +12,7 @@ export default defineConfig({
         enabled: true,
       },
       workbox: {
-        globPatterns: ["public/**.*"],
+        globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
       },
       includeAssets: [
         "favicon.ico",
