@@ -11,6 +11,9 @@ export default defineConfig({
       devOptions: {
         enabled: true,
       },
+      workbox: {
+        globPatterns: ["public/**.*"],
+      },
       includeAssets: [
         "favicon.ico",
         "apple-touch-icon.png",

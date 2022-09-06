@@ -1,5 +1,4 @@
 import usePosts from "./hooks/usePosts";
-import Icon from "./icon.svg";
 
 function App() {
   const posts = usePosts();
@@ -9,7 +8,7 @@ function App() {
       <header>
         <h1 style={{ display: "flex" }}>
           <span aria-hidden style={{ marginRight: "1rem" }}>
-            <img src={Icon} width={36} height={36} />
+            <img src="/assets/icon.svg" width={36} height={36} />
           </span>
           <span>Vite PWA</span>
         </h1>
@@ -81,17 +80,15 @@ function App() {
           right: "2rem",
           bottom: "2rem",
           background: "#2e3440",
-          padding: "1rem 1rem 0 1rem",
-          borderRadius: "0.5rem",
+          padding: "1rem",
+          borderRadius: "4px",
           border: "1px solid #3b4252",
         }}
       >
-        <dl>
-          <dt>
-            <strong>Are we online?</strong>
-          </dt>
-          <dd>Yes</dd>
-        </dl>
+        <div>
+          <strong>Are we online?</strong>
+        </div>
+        <div>Yes</div>
       </footer>
 
       <br />
