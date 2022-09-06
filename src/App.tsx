@@ -107,7 +107,7 @@ function App() {
         <div>
           <strong>Are we online?</strong>
         </div>
-        <div>Yes</div>
+        <div>{navigator.onLine ? "Yes" : "No"}</div>
       </footer>
 
       <br />
