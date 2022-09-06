@@ -1,7 +1,24 @@
+import { useEffect, useState } from "react";
+import useApi from "./hooks/useApi";
 import usePosts from "./hooks/usePosts";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitResult, setSubmitResult] = useState<string>();
+  const api = useApi();
   const posts = usePosts();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.target as HTMLFormElement);
+    const title = data.get("title");
+    const body = data.get("body");
+
+    setIsLoading(true);
+    const result = await api.post("posts", { title, body });
+    setSubmitResult(JSON.stringify(result));
+    setIsLoading(false);
+  };
 
   return (
     <>
@@ -31,7 +48,7 @@ function App() {
 
       <hr />
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2>Create a new post</h2>
 
         <fieldset>
@@ -45,18 +62,20 @@ function App() {
             <textarea name="body" />
           </label>
 
-          <button>Submit</button>
+          <button disabled={isLoading}>Submit</button>
         </fieldset>
 
-        <output>
-          <pre>
-            <code>
-              <span>Lorem ipsum dolor sit amet,</span>
-              <br />
-              <span>consectetur adipiscing elit.</span>
-            </code>
-          </pre>
-        </output>
+        {submitResult && (
+          <output>
+            <details>
+              <summary>Submission result</summary>
+
+              <pre>
+                <code>{submitResult}</code>
+              </pre>
+            </details>
+          </output>
+        )}
       </form>
 
       <hr />
