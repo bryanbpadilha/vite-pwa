@@ -1,16 +1,21 @@
-import React from "react";
-import { CACHE_NAME } from "../lib/constants";
-import { getData } from "../lib/utils";
-
 const useApi = () => {
   const baseUrl = "https://jsonplaceholder.typicode.com/";
 
   const fetcher = async (endpoint: string, options?: RequestInit) => {
     const url = `${baseUrl}${endpoint}`;
+    const response = await fetch(url, options);
 
-    const response = await getData(CACHE_NAME, url);
+    const isJson = response.headers
+      .get("content-type")
+      ?.includes("application/json");
 
-    return response;
+    const data = isJson ? await response.json() : null;
+
+    if (response.ok) {
+      return data;
+    } else {
+      throw new Error(response.statusText);
+    }
   };
 
   const get = async (endpoint: string, options?: RequestInit) => {

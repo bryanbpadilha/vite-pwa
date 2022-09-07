@@ -13,6 +13,13 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,jpg}"],
+        runtimeCaching: [
+          {
+            handler: "NetworkFirst",
+            urlPattern: ({ url }) =>
+              url.origin === "https://jsonplaceholder.typicode.com",
+          },
+        ],
       },
       includeAssets: [
         "favicon.ico",
