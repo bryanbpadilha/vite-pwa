@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import useApi from "./hooks/useApi";
+import useIsOnline from "./hooks/useIsOnline";
 import usePosts from "./hooks/usePosts";
 
 function App() {
+  const isOnline = useIsOnline();
   const [isLoading, setIsLoading] = useState(false);
   const [submitResult, setSubmitResult] = useState<string>();
   const api = useApi();
@@ -107,7 +109,7 @@ function App() {
         <div>
           <strong>Are we online?</strong>
         </div>
-        <div>{navigator.onLine ? "Yes" : "No"}</div>
+        <div>{isOnline ? "Yes" : "No"}</div>
       </footer>
 
       <br />
