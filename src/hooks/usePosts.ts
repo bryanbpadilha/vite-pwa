@@ -4,7 +4,11 @@ import useApi from "./useApi";
 
 const usePosts = (): undefined | Post[] => {
   const api = useApi();
-  const query = useQuery(["todos"], async () => await api.get("posts"));
+
+  const query = useQuery(["todos"], async () => await api.get("posts"), {
+    networkMode: "offlineFirst",
+  });
+
   return query.data;
 };
 
